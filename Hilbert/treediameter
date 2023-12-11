@@ -1,0 +1,23 @@
+
+
+def dfs (v,anterior,dist_atual):
+    distancia[v] = dist_atual
+    if dist_atual > distancia[mais_distante[0]]:
+        mais_distante[0]=v
+    for vizinho in adj[v]:
+        if (vizinho != anterior):
+            dfs(vizinho,v,dist_atual+1)
+
+n = int(input())
+adj = [[] for i in range(n+1)]
+distancia=[0 for i in range(n+1)]
+mais_distante=[1]
+for i in range(n-1):
+    u,v = [int(i) for i in input().split()]
+    adj[u].append(v)
+    adj[v].append(u)
+dfs(1,-1,0)
+primeira_ponta = mais_distante[0]
+dfs(mais_distante[0],-1,0)
+segunda_ponta = mais_distante[0]
+print(distancia[mais_distante[0]])
